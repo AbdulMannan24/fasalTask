@@ -11,7 +11,7 @@ function userAuth(req, res, next) {
         
         let token = authHeader.split(' ')[1];
         let decoded = jwt.verify(token, process.env.SECRET_KEY);
-        if (!decoded.isAdmin) {
+        if (decoded) {
             req.userId = decoded.userId;
             req.email = decoded.email;
             next();
