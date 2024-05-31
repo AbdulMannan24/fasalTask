@@ -30,8 +30,13 @@ const movieSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User',
         required: true
+    }, 
+    list_id: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'List',
+        required: true 
     }
 })
 
 const Movies = mongoose.model('Movie', movieSchema);
-module.exports = Movies
+module.exports = Movies;

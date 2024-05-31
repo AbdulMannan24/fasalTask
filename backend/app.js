@@ -17,6 +17,9 @@ app.use('/user', userRoutes);
 const searchRoutes = require('./routes/movies');
 app.use('/movies', searchRoutes);
 
+const listRoutes = require('./routes/lists');
+app.use('/list', listRoutes);
+
 app.get('/', (req, res) => {
     res.json({message: "Api Server Running"});
 })

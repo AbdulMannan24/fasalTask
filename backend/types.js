@@ -12,6 +12,7 @@ const movie = zod.object({
     ratings: zod.string().optional(),
     language: zod.string().optional(),
     country: zod.string().optional(),
+    list_id: zod.string().min(1),
 })
 
 module.exports = {

@@ -43,7 +43,6 @@ router.get('/search/:name?', async (req, res) => {
 router.post('/add', userAuth, async (req, res) => {
     try {
         // validating request body
-        console.log(req.body);
         let { success } = movie.safeParse(req.body);
         if (!success) {
             return res.json({details: "Movie Details Invalid"});
@@ -52,7 +51,7 @@ router.post('/add', userAuth, async (req, res) => {
         // checking for Already exiting Item
         let existingMovie = await Movies.findOne({title: req.body.title});
         if (existingMovie) {
-            return res.json({details: "Movie Already Added to the List"});
+            return res.json({details: "Movie Already Added to a List"});
         }
 
         // adding Movie to the List
@@ -74,10 +73,11 @@ router.post('/add', userAuth, async (req, res) => {
 })
 
 
-// read movies
-router.get('/', userAuth, async(req, res) => {
+// read movies by listId
+router.get('/:listId', userAuth, async(req, res) => {
     try {
-        let result = await Movies.find({user_id: req.userId});
+        let listId = req.params.listId;
+        let result = await Movies.find({list_id: listId});
         if (result.length > 0) {
             res.json({
                 message: "success",

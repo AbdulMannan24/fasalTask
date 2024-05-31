@@ -8,8 +8,7 @@ const router = express.Router();
 
 // signUp 
 router.post('/signUp', async (req, res) => {
-    let { success } = credentials.safeParse(req.body);
-    
+    let { success } = credentials.safeParse(req.body); 
     // check for valid body
     if (!success) {
         let response =  {
